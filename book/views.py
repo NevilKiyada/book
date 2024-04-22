@@ -1,15 +1,25 @@
-from django.shortcuts import render
+from django.shortcuts import render ,redirect
+from .models import *
 
 # Create your views here.
-def book (request):
+#function name is passed in url.py in path 
+def get_book (request):
+    #catch data from insert_data.html
     if request.method == 'POST':
         data=request.POST
-        book_title=data.get('book_title')
-        book_description=data.get('book_description')
-        print ("book description=",book_description)
+        bi=request.FILES.get('bi')
+        bt=data.get('bt')
+        bd=data.get('bd')
+        #data going into models 
+        Book.objects.create(
+            book_image=bi,
+            book_title=bt,
+            book_description=bd,
+        )
+        #it is use for redirect that page without popup mess for continue or cancel 
+        return redirect('/book/')
 
-        print ("book Name",book_title)
+    q1=Book.objects.all()
 
-        
-    context={'page':'contect'}
+    context={'page':'contect','book':q1}
     return render(request,'insert_data.html',context)

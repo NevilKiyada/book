@@ -18,12 +18,21 @@ from django.contrib import admin
 from django.urls import path
 from book.views import *
 from home.views import *
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+from janvi import settings
 urlpatterns = [
     path('',home,name='home'),
     path('about/',about,name='about'),
     path('contect/',contect,name='contect'),
     path('help',help,name='help'),
-    path('book/',book,name='book'),
+    path('book/',get_book,name='book'),
     path('admin/', admin.site.urls),
 ]
 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                        document_root=settings.MEDIA_ROOT)
+
+urlpatterns += staticfiles_urlpatterns()
