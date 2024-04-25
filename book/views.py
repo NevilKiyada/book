@@ -1,5 +1,6 @@
 from django.shortcuts import render ,redirect
 from .models import *
+from django.http import HttpResponse
 
 # Create your views here.
 #function name is passed in url.py in path 
@@ -23,3 +24,15 @@ def get_book (request):
 
     context={'page':'contect','book':q1}
     return render(request,'insert_data.html',context)
+
+def delete_book(request,id):
+    print (id)
+    qurry=Book.objects.get(id=id)
+    qurry.delete()
+    return redirect('/book/')
+
+
+def book_update(request,id):
+    qurry=Book.objects.get(id=id)
+    qurry.update()
+    return redirect('/book/')

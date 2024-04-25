@@ -53,7 +53,8 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ books.book_title }}</h5>
                   <p class="card-text">{{ books.book_description }}</p>
-                  <input type="button" class="btn btn-danger" value="Delete">
+                  <a href="/delete_book/{{books.id}}" class="btn btn-danger"> Delete</a>
+                  <a href="/book_update/{{books.id}}" class="btn btn-primary"> Update</a>
                 </div>
               </div>
             </div>
