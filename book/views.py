@@ -32,7 +32,28 @@ def delete_book(request,id):
     return redirect('/book/')
 
 
-def book_update(request,id):
+def update_book(request,id):
     qurry=Book.objects.get(id=id)
-    qurry.update()
-    return redirect('/book/')
+    if request.method == 'POST':
+
+        data=request.POST
+        bt=data.get('bt')
+        bd=data.get('bd')
+        bi=request.FILES.get('bi')
+
+        qurry.book_title=bt
+        qurry.book_description=bd
+        if bi:
+            qurry.book_image=bi
+
+        qurry.save()
+        return redirect('/book/')    
+
+
+
+
+    print (id)
+    
+    context={"book":qurry}
+    
+    return render(request,'update_book.html',context)

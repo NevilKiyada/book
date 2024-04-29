@@ -29,7 +29,8 @@ urlpatterns = [
     path('help',help,name='help'),
     path('book/',get_book,name='book'),
     path('delete_book/<id>',delete_book,name='delete_book'),
-    path('book_update/<id>',book_update,name='book_update'),
+    path('update_book/<id>',update_book,name='update_book'),
+    
     path('admin/', admin.site.urls),
 
 ]

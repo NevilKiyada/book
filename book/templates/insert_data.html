@@ -49,12 +49,12 @@
           {% for books in book %}
             <div class="col-md-4 mb-3">
               <div class="card">
-                <img src="/media/{{ books.book_image}}" class="card-img-top" alt="{{ books.book_title }}">
+                <img src="/media/{{ books.book_image}}" class="card-img-top" alt="{{ book_title }}">
                 <div class="card-body">
                   <h5 class="card-title">{{ books.book_title }}</h5>
                   <p class="card-text">{{ books.book_description }}</p>
                   <a href="/delete_book/{{books.id}}" class="btn btn-danger"> Delete</a>
-                  <a href="/book_update/{{books.id}}" class="btn btn-primary"> Update</a>
+                  <a href="/update_book/{{books.id}}" class="btn btn-primary"> Update</a>
                 </div>
               </div>
             </div>
