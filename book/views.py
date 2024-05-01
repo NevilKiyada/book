@@ -21,7 +21,14 @@ def get_book (request):
         return redirect('/book/')
 
     q1=Book.objects.all()
-
+    
+    # get search_book results from insert_data..html
+    
+    if request.GET.get("Search_book"):
+        print (request.GET.get("Search_book"))
+        #__icontains used for match keyword from object book_title
+        q1=q1.filter(book_title__icontains = request.GET.get("Search_book"))      
+    
     context={'page':'contect','book':q1}
     return render(request,'insert_data.html',context)
 
@@ -57,3 +64,11 @@ def update_book(request,id):
     context={"book":qurry}
     
     return render(request,'update_book.html',context)
+
+
+def login(request):
+    return render(request,'login.html')
+
+
+def Ragister(request):
+    return render(request,'ragister.html')
