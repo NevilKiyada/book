@@ -28,14 +28,11 @@ urlpatterns = [
     path('contect/',contect,name='contect'),
     path('help',help,name='help'),
     path('book/',get_book,name='book'),
-
     path('delete_book/<id>',delete_book,name='delete_book'),
     path('update_book/<id>',update_book,name='update_book'),
 
-    
-    path('login/',login,name='login'),
     path('Ragister/',Ragister,name='Ragister'),
-
+    path('login/' ,login,name='login'),
     
     path('admin/', admin.site.urls),
 
