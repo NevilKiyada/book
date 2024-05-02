@@ -6,12 +6,45 @@
         background-color: #F7EFBC;  
       }
       #bt{
-        float:right;
+        float:left;
       }
 
-      log{
-        padding:2cm;
+      #log {
+        display: flex;
+        
       }
+      .navbar{
+        background-color: rgba(95, 67, 0, 0.698);
+        height: 60px;
+        width:auto;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+    }
+    .link{
+        margin-right: 15px;
+        margin-left: 15px;
+        text-decoration: none;
+        color: white;
+        font-size: 17px;
+        transition: 0.3s;
+    }
+    .link:hover{
+        color: rgb(0, 0, 0);
+    }
+    .user{
+        margin-right: 5px;
+        margin-top: 10px;
+        margin-left: 25px;
+        text-decoration: none;
+        color: white;
+        font-size: 17px;
+        
+
+    }
+    #form1{
+      margin-top: 45px;
+    }
       </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,13 +55,41 @@
   </head>
 
 
-  <body class="p-3 m-0 border-0 bd-example m-0 border-0" id="bd" >  
-    <div id="log">
-    <a href="/login/">  <button type="button" id="bt">login</button> </a>
-    </div>
-    <form class="col-7 mx-auto card p-4 shadow-lg" method="post" enctype="multipart/form-data">
+  <body id="bd" >  
+    <div class="navbar">
+      <div id="log">
+        <p class="user">
+          {{ request.user}}
+          {{ request.user.first_name }}
+        </p>
+        </div>
+        <div>
+          {% if request.user.is_authenticated %}
+          
+          <a href="/logout/" class="link">  
+            Logout 
+          </a>
+
+          {% else %}
+
+          <a href="/login/" class="link">  
+            Login 
+          </a>
+
+          <a href="/Ragister/" class="link">  
+            Register
+          </a>
+          {% endif %}
+
+          
+        </div>
+
+  </div>
+  
+    <form class="col-7 mx-auto card p-4 shadow-lg" method="post" enctype="multipart/form-data" id="form1">
       {% csrf_token %}
       <h2>
+       
         Add Your Book 
       </h2>
       <hr>

@@ -70,7 +70,7 @@
       <h2>Login</h2>
       <div class="input-group">
         <label for="username">Username</label>
-        <input type="text" id="username" name="username" required>
+        <input type="text" id="username" name="un" required>
       </div>
       <div class="input-group">
         <label for="password">Password</label>
@@ -78,7 +78,15 @@
       </div>
       <p>You have't account <a href="/Ragister/" >ragister </a></p>
       <button type="submit">Login</button>
+      {% if messages %}
+      <div>
+         {% for message in messages %}
+           {{ message }}
+         {% endfor %}
+      </div> 
+     {% endif %}
     </form>
+ 
   </div>
 </body>
 </html>
