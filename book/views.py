@@ -17,7 +17,7 @@ from django.contrib.auth.decorators import login_required
 
 
 #this function checks if user is logged in or not if not logged redirect to login page
-@login_required(login_url='/login/')
+# @login_required(login_url='/login/')
 # Create your views here.
 #function name is passed in url.py in path 
 
