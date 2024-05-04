@@ -2,9 +2,15 @@
 <html lang="en">
   <head>
     <style>
-      #bd {
-        background-color: #F7EFBC;  
+      #searhbar{
+        background-color: #1E7870;  
+        color: white;
+        
       }
+      #bd {
+        background-color: #D6D4CB;  
+      }
+      
       #bt{
         float:left;
       }
@@ -14,7 +20,7 @@
         
       }
       .navbar{
-        background-color: rgba(95, 67, 0, 0.698);
+        background-color: rgba(97, 94, 82);
         height: 60px;
         width:auto;
         display: flex;
@@ -44,7 +50,10 @@
     }
     #form1{
       margin-top: 45px;
+      background-color: #57958F;  
+      color: white;
     }
+    
       </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -59,7 +68,8 @@
     <div class="navbar">
       <div id="log">
         <p class="user">
-          {{ request.user}}
+          Welcome
+          {% comment %} {{ request.user}} {% endcomment %}
           {{ request.user.first_name }}
         </p>
         </div>
@@ -86,14 +96,14 @@
 
   </div>
   
-    <form class="col-7 mx-auto card p-4 shadow-lg" method="post" enctype="multipart/form-data" id="form1">
+    <form class="col-7 mx-auto card p-4 shadow-lg" method="post" enctype="multipart/form-data" id="form1" >
       {% csrf_token %}
       <h2>
        
         Add Your Book 
       </h2>
       <hr>
-      <div class="mb-3">
+      <div class="mb-3" >
         <label for="exampleInputEmail1" class="form-label">Book Name</label>
         <input type="text" class="form-control" id="exampleInputEmail1"  name="bt" required>
       </div>
@@ -117,7 +127,7 @@
      <!-- Search Bar -->
      <form>
       
-        <div class="col-7 mx-auto card p-4 shadow-lg mt-5">
+        <div class="col-7 mx-auto card p-4 shadow-lg mt-5" id="searhbar">
           <div class="input-group">
             <input type="text" name="Search_book" id="searchInput" class="form-control" placeholder="Search for books...">
             <button type="submit" class="btn btn-outline-primary">Search</button>
@@ -125,7 +135,7 @@
       </div>
     </form>
       <!-- available books -->
-    <div class="col-7 mx-auto card p-4 shadow-lg mt-5">
+    <div class="col-7 mx-auto card p-4 shadow-lg mt-5" id="searhbar">
       <h2>Books</h2>
       <hr>
       {% if book %}
@@ -136,14 +146,16 @@
                 <img src="/media/{{ books.book_image}}" class="card-img-top" alt="{{ book_title }}">
                 <div class="card-body">
                   <h5 class="card-title">{{ books.book_title }}</h5>
-                  <p class="card-text">{{ books.book_description }}</p>
+                  <p class="card-text">{{ books.book_description |truncatechars:150 }}</p>
                   <a href="/delete_book/{{books.id}}" class="btn btn-danger"> Delete</a>
                   <a href="/update_book/{{books.id}}" class="btn btn-primary"> Update</a>
+                  
                 </div>
               </div>
             </div>
           {% endfor %}
         </div>
+        <hr>
       {% else %}
         <p>No books available.</p>
       {% endif %}
