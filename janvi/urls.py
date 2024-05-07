@@ -26,7 +26,9 @@ urlpatterns = [
     path('',home,name='home'),
     path('about/',about,name='about'),
     path('contect/',contect,name='contect'),
-    path('help',help,name='help'),
+    path('help',help,name='help'),  
+
+    
     path('book/',get_book,name='book'),
 
     
