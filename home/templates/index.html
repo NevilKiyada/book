@@ -57,34 +57,73 @@
 <body>
 
 <div class="container">
-    <h1>Welcome to Our Simple Web Page</h1>
-    <p>Here's a table displaying people's information:</p>
+    <h1>Welcome to Our Book Web Page</h1>
+    <p>Here's a table displaying available books </p>
     <table>
         <thead>
             <tr>
                 <th>No</th>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Can Vote</th>
+                <th>Book-Name</th>
+                <th>Book-Description</th>
+                {% comment %} <th>Can Vote</th> {% endcomment %}
             </tr>
         </thead>
         <tbody>
-            {% for people in people %}
+            {% if book %}
+            
+            {% for books in book %}
             <tr>
                 <td>{{ forloop.counter }}</td>
-                <td>{{ people.name }}</td>
-                <td>{{ people.age }}</td>
-                <td class="{% if people.age >= 18 %}can-vote-yes{% else %}can-vote-no{% endif %}">
+                <td>{{ books.book_title }}</td>
+                <td>{{ books.book_description }}</td>
+                {% comment %} <td class="{% if people.age >= 18 %}can-vote-yes{% else %}can-vote-no{% endif %}">
                     {% if people.age >= 18 %}
                         <span class="vote-icon">&#10004;</span>
                     {% else %}
                         <span class="vote-icon">&#10008;</span>
                     {% endif %}
-                </td>
+                </td> {% endcomment %}
             </tr>
             {% endfor %}
+            {% endif %}
+        </tbody>
+       
+    </table>
+</div>
+    <hr>
+    <br>
+    <h2 align="center">User Information</h2>
+    <br>
+    <hr>
+<div class="container">
+    <table>
+        <h1>User</h1>
+        <p>Here's a table displaying available User</p>
+
+        <thead>
+            <th>No</th>
+            <th>First_Name</th>
+            <th>Last_Name</th>
+            <th>Email</th>
+            <th>User-Name</th>
+            <th>Password</th>
+        </theda>
+        <tbody>
+            <tr>
+            {% if user %}
+            {% for users in user%}
+            <td>{{forloop.counter}}</td>
+            <td>{{users.first_name}} </td>
+            <td>{{users.last_name}} </td>
+            <td> {{users.email}} </td>
+            <td>{{users.username}} </td>
+            <td>*********</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
         </tbody>
     </table>
+
 </div>
 </body>
 </html>

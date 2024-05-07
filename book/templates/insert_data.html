@@ -2,16 +2,88 @@
 <html lang="en">
   <head>
     <style>
-      #bd {
-        background-color: #F7EFBC;  
+
+      #input{
+        background-color:EEECE5;
       }
+      #del{
+        background-color: #C70039;
+      }  
+      #last{
+        background-color: rgba(97, 94, 82);
+      }
+      #searchbar{
+        background-color: #DFB771;
+        color: white;
+        
+      }
+      #lastadd{
+        background-color:rgba(97, 94, 82);
+        color:white;
+      }
+      #lastadd:hover{
+        background-color: white;
+        color:rgba(97, 94, 82);
+      }
+      #bd {
+        background-color: #D6D4CB;  
+      }
+      
       #bt{
-        float:right;
+        float:left;
       }
 
-      log{
-        padding:2cm;
+      #log {
+        display: flex;
+        
       }
+      .navbar{
+        background-color: rgba(97, 94, 82);
+        height: 60px;
+        width:auto;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+    }
+    .link{
+        margin-right: 15px;
+        margin-left: 15px;
+        text-decoration: none;
+        color: white;
+        font-size: 17px;
+        transition: 0.3s;
+    }
+    .link:hover{
+        color: rgb(0, 0, 0);
+    }
+    .link1{
+      margin-top: 10px;
+      margin-right: 15px;
+      margin-left: 15px;
+      text-decoration: none;
+      color: white;
+      font-size: 17px;
+      transition: 0.3s;
+  }
+  .link1:hover{
+      color: rgb(0, 0, 0);
+  }
+    .user{
+        margin-right: 5px;
+        margin-top: 10px;
+        margin-left: 25px;
+        text-decoration: none;
+        color: white;
+        font-size: 17px;
+        
+
+    }
+    #form1{
+      margin-top: 45px;
+      background-color: #DFB771;  
+      color: white;
+    }
+    
       </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,49 +94,82 @@
   </head>
 
 
-  <body class="p-3 m-0 border-0 bd-example m-0 border-0" id="bd" >  
-    <div id="log">
-    <a href="/login/">  <button type="button" id="bt">login</button> </a>
-    </div>
-    <form class="col-7 mx-auto card p-4 shadow-lg" method="post" enctype="multipart/form-data">
+  <body id="bd" >  
+    <div class="navbar">
+      <div id="log">
+        <p class="user">
+          Welcome
+          {% comment %} {{ request.user}} {% endcomment %}
+          {{ request.user.first_name }}
+        </p>
+        <a href="/" class="link1">Home</a>
+        <a href="/about" class="link1">about</a>
+        <a href="/contect/"  class="link1">Contact</a>
+
+        </div>
+        <div>
+          {% if request.user.is_authenticated %}
+          
+          <a href="/logout/" class="link">  
+            Logout 
+          </a>
+
+          {% else %}
+
+          <a href="/login/" class="link">  
+            Login 
+          </a>
+
+          <a href="/Ragister/" class="link">  
+            Register
+          </a>
+          {% endif %}
+
+          
+        </div>
+
+  </div>
+  
+    <form class="col-7 mx-auto card p-4 shadow-lg" method="post" enctype="multipart/form-data" id="form1" >
       {% csrf_token %}
       <h2>
+       
         Add Your Book 
       </h2>
       <hr>
-      <div class="mb-3">
+      <div class="mb-3" >
         <label for="exampleInputEmail1" class="form-label">Book Name</label>
-        <input type="text" class="form-control" id="exampleInputEmail1"  name="bt" required>
+        <input type="text" class="form-control" id="input"  name="bt" required>
       </div>
 
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Book Discription</label>
-        <textarea class="form-control" name="bd" required ></textarea>
+        <textarea class="form-control" name="bd" id="input" required ></textarea>
       </div>
 
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Book Image</label>
-        <input type="file"  class="form-control" name="bi">
+        <input type="file"  class="form-control" id="input" name="bi">
 
       </div>
 
       
-      <button type="submit" class="btn btn-primary" >Add Book</button>
+      <button type="submit" class="btn btn-outline-light" id="lastadd" >Add Book</button>
      
     </form>
      </body>
      <!-- Search Bar -->
      <form>
       
-        <div class="col-7 mx-auto card p-4 shadow-lg mt-5">
+        <div class="col-7 mx-auto card p-4 shadow-lg mt-5" id="last">
           <div class="input-group">
-            <input type="text" name="Search_book" id="searchInput" class="form-control" placeholder="Search for books...">
-            <button type="submit" class="btn btn-outline-primary">Search</button>
+            <input type="text" name="Search_book" id="input" class="form-control" placeholder="Search for books...">
+            <button type="submit" class="btn btn-outline-light">Search</button>
           </div>
       </div>
     </form>
       <!-- available books -->
-    <div class="col-7 mx-auto card p-4 shadow-lg mt-5">
+    <div class="col-7 mx-auto card p-4 shadow-lg mt-5" id="searchbar">
       <h2>Books</h2>
       <hr>
       {% if book %}
@@ -73,16 +178,18 @@
             <div class="col-md-4 mb-3">
               <div class="card">
                 <img src="/media/{{ books.book_image}}" class="card-img-top" alt="{{ book_title }}">
-                <div class="card-body">
+                <div class="card-body" id="input">
                   <h5 class="card-title">{{ books.book_title }}</h5>
-                  <p class="card-text">{{ books.book_description }}</p>
-                  <a href="/delete_book/{{books.id}}" class="btn btn-danger"> Delete</a>
-                  <a href="/update_book/{{books.id}}" class="btn btn-primary"> Update</a>
+                  <p class="card-text">{{ books.book_description |truncatechars:150 }}</p>
+                  <a href="/delete_book/{{books.id}}" class="btn btn-danger" id="del"> Delete</a>
+                  <a href="/update_book/{{books.id}}" class="btn btn-primary" id="last"> Update</a>
+                  
                 </div>
               </div>
             </div>
           {% endfor %}
         </div>
+        <hr>
       {% else %}
         <p>No books available.</p>
       {% endif %}

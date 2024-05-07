@@ -26,13 +26,18 @@ urlpatterns = [
     path('',home,name='home'),
     path('about/',about,name='about'),
     path('contect/',contect,name='contect'),
-    path('help',help,name='help'),
+    path('help',help,name='help'),  
+
+    
     path('book/',get_book,name='book'),
+
+    
     path('delete_book/<id>',delete_book,name='delete_book'),
     path('update_book/<id>',update_book,name='update_book'),
 
     path('Ragister/',Ragister,name='Ragister'),
-    path('login/' ,login,name='login'),
+    path('login/' ,login_page,name='login'),
+    path('logout/' ,logout_page,name='logout'),
     
     path('admin/', admin.site.urls),
 

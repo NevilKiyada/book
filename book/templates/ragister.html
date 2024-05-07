@@ -10,10 +10,11 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background-color: #FEDCD2;
+      background-color: #DFB771;
     }
 
     .container {
+      
       display: flex;
       justify-content: center;
       align-items: center;
@@ -21,7 +22,7 @@
     }
 
     .registration-form {
-      background-color: #fff;
+      background-color: #CAC7AD;
       padding: 50px;
       border-radius: 10px;
       box-shadow: 0px 0px 40px rgba(170, 109, 109);
@@ -54,7 +55,7 @@
     button[type="submit"] {
       width: 100%;
       padding: 10px;
-      background-color: #FF5F6D;
+      background-color:#897563 ;
       border: none;
       border-radius: 4px;
       color: #fff;
@@ -62,7 +63,8 @@
     }
 
     button[type="submit"]:hover {
-      background-color: #FF384E;
+      background-color: #A99C90 ;
+      color :black !important;
     }
 
     p {
@@ -70,7 +72,9 @@
     }
 
     a {
-      color: #FF5F6D;
+      margin-left: 10px;
+      color: #7B4716;
+      font-size: 18px;
       text-decoration: none;
     }
   </style>
@@ -79,7 +83,7 @@
   <div class="container">
     <form class="registration-form" method="POST">
       {% csrf_token %}
-      <h2>Registration</h2>
+      <h2 style="color:#897563 ;">Registration</h2>
       <hr>
        
 
@@ -109,7 +113,8 @@
       <button type="submit">Register</button>
       
         {% if messages %}
-         <div>
+         <div style="{ color:black; font-size:17px;
+          margin-top:16px;}">
             {% for message in messages %}
               {{ message }}
             {% endfor %}

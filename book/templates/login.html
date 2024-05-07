@@ -5,14 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Page</title>
   <style>
+    #alert { color:black; font-size:17px;
+    margin-top:16px;}
+    p{
+      color:black;
+    }
+    a {
+      margin-left: 10px;
+      color: #7B4716;
+      font-size: 18px;
+      text-decoration: none;
+    }
     body {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background-color: #ABF8DA;
+      background-color:#DFB771;
     }
-
+    #formlog{
+      background-color:#CAC7AD;
+      color:white;
+    }
     .container {
+      
       display: flex;
       justify-content: center;
       align-items: center;
@@ -20,7 +35,8 @@
     }
 
     .login-form {
-      background-color: #fff;
+      background-color: ;
+      color :white !important;
       padding: 60px;
       border-radius: 10px;
       box-shadow: 0px 0px 40px rgba(91, 99, 84);
@@ -33,6 +49,8 @@
 
     .input-group {
       margin-bottom: 20px;
+      
+      width:10cm;
     }
 
     .input-group label {
@@ -51,7 +69,7 @@
     button[type="submit"] {
       width: 100%;
       padding: 10px;
-      background-color: #0782FE;
+      background-color:#897563 ;
       border: none;
       border-radius: 4px;
       color: #fff;
@@ -59,18 +77,19 @@
     }
 
     button[type="submit"]:hover {
-      background-color: #0056b3;
+      background-color: #A99C90 ;
+      color :black !important;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <form class="login-form" method="POST">
+    <form class="login-form" method="POST" id="formlog">
       {% csrf_token %}
-      <h2>Login</h2>
+      <h2 style="color:#897563 ;">Login</h2>
       <div class="input-group">
         <label for="username">Username</label>
-        <input type="text" id="username" name="username" required>
+        <input type="text" id="username" name="un" required>
       </div>
       <div class="input-group">
         <label for="password">Password</label>
@@ -78,7 +97,15 @@
       </div>
       <p>You have't account <a href="/Ragister/" >ragister </a></p>
       <button type="submit">Login</button>
+      {% if messages %}
+      <div id="alert">
+         {% for message in messages %}
+           {{ message }}
+         {% endfor %}
+      </div> 
+     {% endif %}
     </form>
+ 
   </div>
 </body>
 </html>

@@ -1,13 +1,26 @@
 from django.shortcuts import render ,redirect
 from .models import *
 from django.http import HttpResponse
+
 #for user model maintaining user record
 from django.contrib.auth.models import User
+
 #for give message user alredy existing
 from django.contrib import messages
 
+#for password authentication
+from django.contrib.auth import authenticate , login , logout
+
+#for only show login page without login not any pages accessible
+from django.contrib.auth.decorators import login_required
+
+
+
+#this function checks if user is logged in or not if not logged redirect to login page
+@login_required(login_url='/login/')
 # Create your views here.
 #function name is passed in url.py in path 
+
 def get_book (request):
     #catch data from insert_data.html
     if request.method == 'POST':
@@ -35,6 +48,8 @@ def get_book (request):
     context={'page':'contect','book':q1}
     return render(request,'insert_data.html',context)
 
+#this function checks if user is logged in or not if not logged redirect to login page
+@login_required(login_url='/login/')
 def delete_book(request,id):
     print (id)
     qurry=Book.objects.get(id=id)
@@ -42,6 +57,8 @@ def delete_book(request,id):
     return redirect('/book/')
 
 
+#this function checks if user is logged in or not if not logged redirect to login page
+@login_required(login_url='/login/')
 def update_book(request,id):
     qurry=Book.objects.get(id=id)
     if request.method == 'POST':
@@ -66,7 +83,36 @@ def update_book(request,id):
     return render(request,'update_book.html',context)
 
 
-def login(request):
+def logout_page (request):
+    logout(request)
+    return redirect('/login/')
+
+
+
+
+def login_page(request):
+    if request.method == 'POST':
+        Username= request.POST.get('un')
+        Password= request.POST.get('password')
+
+        if not User.objects.filter(username= Username).exists():
+            messages.info(request, "User name is not available")
+            return redirect('/login/') 
+        
+        #chek username and password are correct or not using authenticated functions
+        check_user=authenticate(username=Username, password=Password)
+
+        #if check_user is not set then pass message to login page
+        if check_user is None :
+            messages.info(request, "password is not valid")
+            return redirect('/login/') 
+        
+        else :
+            login(request,check_user)
+            print (Username)
+            return redirect('/book/')    
+
+
     return render(request,'login.html')
 
 
@@ -85,7 +131,8 @@ def Ragister(request):
         if same_uname.exists():
             messages.info(request, "User name already exists")
             return redirect('/Ragister/') 
-
+        
+       
 
 
         #give value to objects of User model by using variables
