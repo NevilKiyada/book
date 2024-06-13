@@ -7,6 +7,7 @@ from django.http import HttpResponse
 
 
 # Create your views here.
+@login_required(login_url='/login')
 def home(request):
     q1=Book.objects.all()
     users = User.objects.all()
