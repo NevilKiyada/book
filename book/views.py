@@ -11,13 +11,13 @@ from django.contrib import messages
 #for password authentication
 from django.contrib.auth import authenticate , login , logout
 
-#for only show login page without login not any pages accessible
+#for only show login page without login not any pages accessiblecd
 from django.contrib.auth.decorators import login_required
 
 
 
 #this function checks if user is logged in or not if not logged redirect to login page
-@login_required(login_url='/login/')
+@login_required(login_url='/login')
 # Create your views here.
 #function name is passed in url.py in path 
 
