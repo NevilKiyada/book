@@ -96,17 +96,3 @@ By default, it will start on `http://127.0.0.1:5000/`.
 * Add user authentication
 * Add Swagger/OpenAPI documentation
 
-## 📄 License
-
-This project is open-source and available under the [MIT License](LICENSE).
-
----
-
-Feel free to contribute or open issues to improve the project!
-
-```
-
----
-
-Let me know if you'd like to include screenshots, a logo, badges, or want to deploy it (e.g., on Render or Vercel), and I can adjust the README accordingly.
-```
